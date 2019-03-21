@@ -40,7 +40,6 @@
         <cylinder radius="${width}" length="${bodylen}"/>
       </geometry>
     </collision>
-    <xacro:default_inertial mass="10"/>
   </link>
 
   <xacro:macro name="wheel" params="prefix suffix reflect">
@@ -59,9 +58,8 @@
           <cylinder radius="${wheeldiam/2}" length="0.1"/>
         </geometry>
       </collision>
-      <xacro:default_inertial mass="1"/>
     </link>
-    <joint name="${prefix}_${suffix}_wheel_joint" type="continuous">
+    <joint name="${prefix}_${suffix}_wheel_joint" type="fixed">
       <axis xyz="0 1 0" rpy="0 0 0" />
       <parent link="${prefix}_base"/>
       <child link="${prefix}_${suffix}_wheel"/>
@@ -85,7 +83,6 @@
         </geometry>
         <origin xyz="0 0 -${leglen/2}" rpy="0 ${pi/2} 0"/>
       </collision>
-      <xacro:default_inertial mass="10"/>
     </link>
 
     <joint name="base_to_${prefix}_leg" type="fixed">
@@ -106,7 +103,6 @@
           <box size="${baselen} 0.1 0.1"/>
         </geometry>
       </collision>
-      <xacro:default_inertial mass="10"/>
     </link>
 
     <joint name="${prefix}_base_joint" type="fixed">
@@ -120,7 +116,7 @@
   <xacro:leg prefix="right" reflect="-1" />
   <xacro:leg prefix="left" reflect="1" />
 
-  <joint name="gripper_extension" type="prismatic">
+  <joint name="gripper_extension" type="fixed">
     <parent link="base_link"/>
     <child link="gripper_pole"/>
     <limit effort="1000.0" lower="-${width*2-.02}" upper="0" velocity="0.5"/>
@@ -140,11 +136,10 @@
       </geometry>
       <origin xyz="${polelen/2} 0 0" rpy="0 ${pi/2} 0 "/>
     </collision>
-    <xacro:default_inertial mass="0.05"/>
   </link>
 
   <xacro:macro name="gripper" params="prefix reflect">
-    <joint name="${prefix}_gripper_joint" type="revolute">
+    <joint name="${prefix}_gripper_joint" type="fixed">
       <axis xyz="0 0 ${reflect}"/>
       <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5"/>
       <origin rpy="0 0 0" xyz="${polelen} ${reflect*0.01} 0"/>
@@ -164,7 +159,6 @@
         </geometry>
         <origin rpy="${(reflect-1)/2*pi} 0 0" xyz="0 0 0"/>
       </collision>
-      <xacro:default_inertial mass="0.05"/>
     </link>
 
     <joint name="${prefix}_tip_joint" type="fixed">
@@ -184,7 +178,7 @@
         </geometry>
         <origin rpy="${(reflect-1)/2*pi} 0 0" xyz="0.09137 0.00495 0"/>
       </collision>
-      <xacro:default_inertial mass="0.05"/>
+
     </link>
   </xacro:macro>
 
@@ -203,10 +197,9 @@
         <sphere radius="${width}"/>
       </geometry>
     </collision>
-    <xacro:default_inertial mass="2"/>
   </link>
 
-  <joint name="head_swivel" type="continuous">
+  <joint name="head_swivel" type="fixed">
     <parent link="base_link"/>
     <child link="head"/>
     <axis xyz="0 0 1"/>
@@ -226,9 +219,7 @@
         <box size="0.08 0.08 0.08"/>
       </geometry>
     </collision>
-    <xacro:default_inertial mass="1"/>
-  </link>
-  	
+  </link> 	  	
 
   <joint name="tobox" type="fixed">
     <parent link="head"/>
@@ -236,21 +227,31 @@
     <origin xyz="${.707*width+0.04} 0 ${.707*width}"/>
   </joint>
 
+
 <link name="lense">
 <visual>
 <geometry>
-<sphere radius="${width/10}"/>
+<cylinder radius="${width/10}" length="${width/3}"/>
 </geometry>
-<marterial name="black"/>
-<origin xyz="0 0 0"/>
+<origin xyz="${width/15} 0 0" rpy="0 ${pi/2} 0" />
+      <material name="black"/>
 </visual>
 </link>
 
-<joint name="lensetobox" type="fixed">
+<joint name="lensetoboxX" type="fixed">
+<limit effort="${pi/5}" lower="${-pi/5}" upper="${pi/5}" velocity="0.9"/>
 <parent link="box"/>
 <child link="lense"/>
+<axis xyz="0 0 1"/>
 <origin xyz="0 0 0"/>
 </joint>
 
+<link name="base_footprint">
+</link>
+<joint name="footprint_base" type="fixed">
+<parent link="base_footprint"/>
+<child link="base_link"/>
+<origin xyz="0 0 ${bodylen/2+0.1+wheeldiam}" rpy="0 0 0"/>
+</joint>
 
 </robot>
