@@ -1,0 +1,7 @@
+<launch>
+	<node name="range_tester" pkg="range_visualizer" type="range_publisher"/>
+	<node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="0 0 0 0 0 0 map range_test 100" />
+	<node name="rviz" pkg="rviz" type="rviz" args ="-d $(find range_visualizer)/config/rvizconfig.rviz"/>
+</launch>
+
+
