@@ -23,22 +23,20 @@ while(ros::ok())
 	sensor.min_range=0.02;
 	sensor.max_range=4;
 
-sensor.field_of_view=0.785398;
+	sensor.field_of_view=0.785398;
 
 //Assign message
-sensor.header=header;
-sensor.range = ((float)rand()/RAND_MAX)*4;
-if(sensor.range<0.02){
-sensor.range=0.02;
-}
-ROS_INFO("%f",sensor.range);
+	sensor.header=header;
+	sensor.range = ((float)rand()/RAND_MAX)*4;
 
-range_publisher.publish(sensor);
+	ROS_INFO("%f",sensor.range);
 
-ros::spinOnce();
+	range_publisher.publish(sensor);
 
-loop_rate.sleep();
-++count;
+	ros::spinOnce();
+
+	loop_rate.sleep();
+	++count;
 
 }
 

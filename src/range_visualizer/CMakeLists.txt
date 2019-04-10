@@ -203,7 +203,7 @@ include_directories(
 
 catkin_package()
 
-add_executable(range_publisher scripts/range_publisher.cpp)
+add_executable(range_publisher src/range_publisher.cpp)
 target_link_libraries(range_publisher ${catkin_LIBRARIES})
 add_dependencies(range_publisher range_visualizer_generate_messages_cpp)
 
