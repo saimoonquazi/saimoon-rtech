@@ -58,7 +58,7 @@ Visualization Manager:
       Enabled: true
       Name: Range
       Queue Size: 100
-      Topic: /fake_range
+      Topic: /filtered_range
       Unreliable: false
       Value: true
   Enabled: true
@@ -86,7 +86,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 10.4608259
+      Distance: 1.69451284
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1

@@ -205,5 +205,8 @@ catkin_package()
 
 add_executable(range_publisher src/range_publisher.cpp)
 target_link_libraries(range_publisher ${catkin_LIBRARIES})
-add_dependencies(range_publisher range_visualizer_generate_messages_cpp)
+
+add_executable(range_filter src/range_filter.cpp)
+target_link_libraries(range_filter ${catkin_LIBRARIES})
+
 
