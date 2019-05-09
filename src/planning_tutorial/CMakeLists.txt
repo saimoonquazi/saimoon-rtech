@@ -203,7 +203,7 @@ include_directories(
 
 catkin_package()
 
-add_executable(moving_interface_tutorial src/move_group_interface_tutorial.cpp)
-target_link_libraries(moving_interface_tutorial ${catkin_LIBRARIES})
+add_executable(moveit_tutorial_cpp_test src/move_group_interface_tutorial.cpp)
+target_link_libraries(moveit_tutorial_cpp_test ${catkin_LIBRARIES})
 
 
