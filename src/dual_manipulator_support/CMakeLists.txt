@@ -1,19 +1,19 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(planning_tutorial)
+project(dual_manipulator_support)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-add_compile_options(-std=c++11)
+# add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  moveit_ros_planning_interface
+  moveit_visual_tools
   roscpp
   rospy
-  std_msgs
-  moveit_ros_planning_interface
   rviz_visual_tools
-  moveit_visual_tools
+  std_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -107,8 +107,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES planning_tutorial
-#  CATKIN_DEPENDS roscpp rospy std_msgs
+#  LIBRARIES dual_manipulator_support
+#  CATKIN_DEPENDS moveit_ros_planning_interface moveit_visual_tools rocpp rospy rviz_visual_tools std_msgs
 #  DEPENDS system_lib
 )
 
@@ -125,7 +125,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/planning_tutorial.cpp
+#   src/${PROJECT_NAME}/dual_manipulator_support.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -136,7 +136,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/planning_tutorial_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/dual_manipulator_support_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -193,18 +193,10 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_planning_tutorial.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_dual_manipulator_support.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-
-catkin_package()
-
-add_executable(moveit_tutorial_cpp_test src/move_group_interface_tutorial.cpp)
-target_link_libraries(moveit_tutorial_cpp_test ${catkin_LIBRARIES})
-
-add_executable(moveit_pose_test src/moveit_test.cpp)
-target_link_libraries(moveit_pose_test ${catkin_LIBRARIES})

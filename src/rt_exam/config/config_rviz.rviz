@@ -117,6 +117,8 @@ Visualization Manager:
           Value: true
         left_front_wheel:
           Value: true
+        odom:
+          Value: true
         right_back_wheel:
           Value: true
         right_front_wheel:
@@ -139,13 +141,15 @@ Visualization Manager:
               {}
             right_front_wheel:
               {}
+        odom:
+          {}
       Update Interval: 0
       Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: base_footprint
+    Fixed Frame: odom
     Frame Rate: 30
   Name: root
   Tools:

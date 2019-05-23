@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="motoman_sia5d"> 
+<xacro:include filename="$(find motoman_sia5d_support)/urdf/sia5d_macro.xacro"/>
+<xacro:motoman_sia5d prefix="sia5_"/>
+  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
+  <xacro:ur5_robot prefix="ur5_" joint_limited="false"/>
+ <material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+
+<link name="base_link">
+    <visual>
+	<origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="1.5 1 0.5"/>
+      </geometry>
+	<material name="blue"/>
+    </visual>
+</link>
+
+<joint name="base_sia5" type="fixed">
+    <parent link="base_link"/>
+    <child link="sia5_base_link"/>
+    <origin xyz="0.5 0 0.25" rpy="0 0 -1.57"/>
+</joint>
+
+<joint name="base_ur5" type="fixed">
+    <parent link="base_link"/>
+    <child link="ur5_base_link"/>
+    <origin xyz="-0.5 0 0.25" rpy="0 0 -1.57"/>
+  </joint>
+</robot>

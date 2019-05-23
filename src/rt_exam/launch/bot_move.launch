@@ -1,0 +1,5 @@
+<launch>
+	<remap from="/turtle1/cmd_vel" to="/cmd_vel"/>	
+	<node name="bot_controller" pkg="rt_exam" type="bot_controller"/>
+	<node name="move_controller" pkg="turtlesim" type="turtle_teleop_key"/>
+</launch>

@@ -17,13 +17,13 @@ void chatterCallback(const sensor_msgs::Range  &msg)
 int main(int argc, char **argv)
 {
 //ros::init(argc, argv, "range_publisher");
-ros::init(argc, argv, "filter_node");
-ros::NodeHandle n;
-ros::Subscriber sub = n.subscribe("us_data_raw",1000,chatterCallback);
+	ros::init(argc, argv, "filter_node");
+	ros::NodeHandle n;
+	ros::Subscriber sub = n.subscribe("us_data_raw",1000,chatterCallback);
 //ros::Subscriber sub = n.subscribe("fake_range",1000,chatterCallback);
-ros::Publisher range_publisher= n.advertise<sensor_msgs::Range>("filtered_range",1000);
-ros::Rate loop_rate(10);
-int count =0;
+	ros::Publisher range_publisher= n.advertise<sensor_msgs::Range>("filtered_range",1000);
+	ros::Rate loop_rate(10);
+	int count =0;
 
 // Make relevant objects
 	sensor_msgs::Range sensor;
@@ -42,7 +42,7 @@ while(ros::ok())
 	if(myvector.size()>(average_count-1)){
 		float running_avg_value=0;
 		for (int i=0;i<average_count;i++){
-		running_avg_value+=myvector[i];
+			running_avg_value+=myvector[i];
 		}	
 		running_avg_value/=average_count;
 		sensor.range = running_avg_value;

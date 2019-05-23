@@ -10,15 +10,13 @@ int main(int argc, char **argv)
 	ros::NodeHandle n;
 	geometry_msgs::Twist mover;
 	ros::Publisher move_pub = n.advertise<geometry_msgs::Twist>("cmd_vel",1);
-	ros::Rate loop_rate(100);
-	mover.linear.x+=0;
-	mover.linear.y+=0;
-	mover.linear.z+=0;	
+	ros::Rate loop_rate(5);
+	mover.linear.x=0;	
 
 	while(ros::ok())
 	{
 	
-	mover.linear.y+=1;
+	mover.linear.x+=1;
 	move_pub.publish(mover);
 
 	ros::spinOnce();
