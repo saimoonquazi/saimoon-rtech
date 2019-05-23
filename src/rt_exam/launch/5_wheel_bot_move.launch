@@ -1,0 +1,4 @@
+<launch>	
+	<node name="bot_controller" pkg="rt_exam" type="bot_controller"/>
+	
+</launch>
